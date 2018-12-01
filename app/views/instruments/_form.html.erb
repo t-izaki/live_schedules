@@ -1,0 +1,16 @@
+<%= form_for instrument do |f| %>
+  <%= render partial: 'layouts/error_messages', locals: { object: f.object } %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :color %>
+    <%= f.text_field :color, class: 'form-control', placeholder: '#000000' %>
+    <p>color-hex: <a href="https://www.color-hex.com/" target="_blank">https://www.color-hex.com/</a></p>
+  </div>
+
+  <%= f.submit submit_button_value, class: 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col">
+    <h1>楽器を編集する</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <%= render partial: 'form', locals: {instrument: @instrument, submit_button_value: '編集する'} %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <p class="text-right">
+      <%= link_to 'この楽器を削除する', instrument_path(@instrument), method: :delete, data: { confirm: '削除します。よろしいですか？' }, class: 'btn btn-danger btn-sm' %>
+    </p>
+  </div>
+</div>

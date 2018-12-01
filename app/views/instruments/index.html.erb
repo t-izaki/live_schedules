@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col">
+    <h1>楽器</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名前</th>
+          <th>テーマカラー</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @instruments.each do |inst| %>
+          <tr>
+            <td><%= inst.id %></td>
+            <td><%= inst.name %></td>
+            <td>
+              <span style="color: <%= inst.color %>">■</span>
+              <%= inst.color %>
+            </td>
+            <td>
+              <%= link_to '編集', edit_instrument_path(inst) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to '新しく楽器を追加する', new_instrument_path %>
+  </div>
+</div>

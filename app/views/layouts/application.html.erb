@@ -14,9 +14,10 @@
       <% if notice %>
         <div class="alert alert-success"><%= notice %></div>
       <% elsif alert %>
-        <div class="alert alert-alert"><%= alert %></div>
+        <div class="alert alert-danger"><%= alert %></div>
       <% end %>
-    <%= yield %>
+
+      <%= yield %>
     </div>
   </body>
 </html>
