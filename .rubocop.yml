@@ -1,0 +1,17 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "tmp/**/*"
+    - "bin/**/*"
+    - "Gemfile"
+  DisplayCopNames: true
+
+Metrics/LineLength:
+  Max: 160
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
