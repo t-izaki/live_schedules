@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 AllCops:
   Exclude:
     - "vendor/**/*"
@@ -7,8 +9,18 @@ AllCops:
     - "Gemfile"
   DisplayCopNames: true
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 Metrics/LineLength:
   Max: 160
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 5
 
 Style/Documentation:
   Enabled: false

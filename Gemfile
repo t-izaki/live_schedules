@@ -47,6 +47,8 @@ group :development, :test do
   # debug gem
   gem 'pry-byebug'
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -59,6 +61,13 @@ group :development do
   # better_errors https://github.com/BetterErrors/better_errors
   gem "better_errors"
   gem "binding_of_caller"
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'capybara', require: false
+  gem 'selenium-webdriver', require: false
 end
 
 
