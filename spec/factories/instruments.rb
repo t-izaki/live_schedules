@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :instrument do
-    sequence(:name) { |n| "Instrument#{n}" }
-    sequence(:color) { |n| "##{n.to_s * 6}" }
+    name { Faker::Music.instrument }
+    color { Faker::Color.hex_color }
   end
 end

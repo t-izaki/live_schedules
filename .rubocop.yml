@@ -6,6 +6,7 @@ AllCops:
     - "db/**/*"
     - "tmp/**/*"
     - "bin/**/*"
+    - "config/**/*"
     - "Gemfile"
   DisplayCopNames: true
 

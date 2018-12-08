@@ -49,6 +49,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -61,6 +62,8 @@ group :development do
   # better_errors https://github.com/BetterErrors/better_errors
   gem 'better_errors'
   gem 'binding_of_caller'
+  # alert N+1 queries
+  gem 'bullet'
 end
 
 group :test do
