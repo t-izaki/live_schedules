@@ -11,12 +11,16 @@ RSpec.describe Performer, type: :model do
       it { expect(build(:performer, :blank_introduction)).to be_valid }
     end
 
-    describe 'Presence validation' do
+    describe 'Presence' do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:instrument_id) }
     end
 
-    describe 'Numericality validation' do
+    describe 'Length' do
+      it { is_expected.to validate_length_of(:name).is_at_most(255) }
+    end
+
+    describe 'Numericality' do
       it { is_expected.to validate_numericality_of(:instrumnet_id) }
     end
   end

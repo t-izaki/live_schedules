@@ -10,18 +10,22 @@ RSpec.describe Instrument, type: :model do
       it { expect(build(:instrument)).to be_valid }
     end
 
-    describe 'Presence validation' do
+    describe 'Presence' do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:color) }
     end
 
-    describe 'Uniqueness validation' do
+    describe 'Uniqueness' do
       subject { create(:instrument) }
 
       it { is_expected.to validate_uniqueness_of(:name) }
     end
 
-    describe 'Format validation' do
+    describe 'Length' do
+      it { is_expected.to validate_length_of(:name).is_at_most(255) }
+    end
+
+    describe 'Format' do
       let(:instrument) { build(:instrument, color: 'dummy') }
 
       it 'カラーコードでないならinvalidである' do
