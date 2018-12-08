@@ -66,6 +66,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara', require: false
   gem 'selenium-webdriver', require: false

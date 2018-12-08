@@ -1,27 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Instrument, type: :model do
-  describe 'Validation tests' do
-    let(:instrument) { build(:instrument) }
+  describe 'Validation' do
+    describe 'Factory check' do
+      subject { build(:instrument) }
 
-    it 'factoryが正常に動作する' do
-      expect(instrument).to be_valid
+      it { is_expected.to be_valid }
     end
 
-    describe 'Standard Validation' do
-      it 'nameがないとinvalidである' do
-        instrument.name = ''
-        expect(instrument).to be_invalid
-      end
+    describe 'Presence validation' do
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:color) }
+    end
 
-      it 'colorがないとinvalidである' do
-        instrument.color = ''
-        expect(instrument).to be_invalid
-      end
+    describe 'Uniqueness validation' do
+      subject { create(:instrument) }
 
-      it 'colorがカラーコードを示す文字列でないとinvalidである' do
-        instrument.color = 'dummy'
-        expect(instrument).to be_invalid
+      it { is_expected.to validate_uniqueness_of(:name) }
+    end
+
+    describe 'Format validation' do
+      subject { build(:instrument, color: 'dummy') }
+
+      it '16進トリプレット表記のカラーコードでないなら、invalidである' do
+        expect(subject).to be_invalid
       end
     end
   end
