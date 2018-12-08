@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Instrument, type: :model do
+  describe 'Association' do
+    it { is_expected.to have_many(:performers) }
+  end
+
   describe 'Validation' do
     describe 'Factory check' do
-      subject { build(:instrument) }
-
-      it { is_expected.to be_valid }
+      it { expect(build(:instrument)).to be_valid }
     end
 
     describe 'Presence validation' do

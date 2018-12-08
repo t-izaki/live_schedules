@@ -22,7 +22,7 @@
           <td><%= performer.id %></td>
           <td><%= performer.name %></td>
           <td><%= performer.instrument_name %></td>
-          <td><%= replace_if_blank(performer.introduction, '紹介文がありません').truncate(50) %></td>
+          <td><%= replace_if_blank(performer.introduction, '紹介文がありません').truncate(Performer::INTRODUCTION_TRUNCATE_LENGTH) %></td>
           <td>
             <%= link_to '詳細', performer_path(performer) %>
             <%= link_to '編集', edit_performer_path(performer) %>
