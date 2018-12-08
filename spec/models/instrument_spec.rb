@@ -20,10 +20,10 @@ RSpec.describe Instrument, type: :model do
     end
 
     describe 'Format validation' do
-      subject { build(:instrument, color: 'dummy') }
+      let(:instrument) { build(:instrument, color: 'dummy') }
 
-      it '16進トリプレット表記のカラーコードでないなら、invalidである' do
-        expect(subject).to be_invalid
+      it 'カラーコードでないならinvalidである' do
+        expect(instrument).to be_invalid
       end
     end
   end
