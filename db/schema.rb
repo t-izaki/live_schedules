@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_122224) do
+ActiveRecord::Schema.define(version: 2018_12_16_111343) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2018_12_08_122224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
+  end
+
+  create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "performer_id"
+    t.bigint "schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["performer_id", "schedule_id"], name: "index_attendances_on_performer_id_and_schedule_id", unique: true
+    t.index ["performer_id"], name: "index_attendances_on_performer_id"
+    t.index ["schedule_id"], name: "index_attendances_on_schedule_id"
   end
 
   create_table "instruments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -47,4 +57,6 @@ ActiveRecord::Schema.define(version: 2018_12_08_122224) do
     t.index ["date"], name: "index_schedules_on_date", unique: true
   end
 
+  add_foreign_key "attendances", "performers"
+  add_foreign_key "attendances", "schedules"
 end

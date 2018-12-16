@@ -12,6 +12,7 @@
         <td>#</td>
         <td>曜日</td>
         <td>状態</td>
+        <td>演奏者</td>
         <td>タイトル</td>
         <td>詳細</td>
       </tr>
@@ -22,6 +23,7 @@
             <td><%= schedule.date %></td>
             <td><%= ja_week(schedule.date) %></td>
             <td><%= schedule.state %></td>
+            <td><%= schedule.performers.map{|p| p.name}.join(',') %>
             <td><%= schedule.title %></td>
             <td><%= schedule.detail %></td>
           </tr>

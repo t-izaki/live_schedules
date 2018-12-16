@@ -1,6 +1,7 @@
 class Performer < ApplicationRecord
   INTRODUCTION_TRUNCATE_LENGTH = 50
 
+  has_many :attendances
   belongs_to :instrument
   delegate :name, to: :instrument, prefix: :instrument
 

@@ -17,3 +17,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require select2
+
+$(function(){
+    $('.select-performer-ids').select2({
+        width: '100%'
+    });
+});

@@ -1,6 +1,9 @@
 class Schedule < ApplicationRecord
   enum state: { undecided: 0, open: 1, closed: 2 }
 
+  has_many :attendances
+  has_many :performers, through: :attendances
+
   validates :date, :state, presence: true
   validates :date, uniqueness: true
   validates :title, length: { maximum: 255 }

@@ -7,13 +7,16 @@
       <%= ja_week(schedule.date) %>
     </td>
     <td>
-      <%= fi.select :state, Schedule.states.keys.map {|k| [k, k]}, {}, {class: 'form-control form-control-sm'} %>
+      <%= fi.select :state, Schedule.states.keys.map {|k| [k, k]}, {}, { class: 'form-control' } %>
     </td>
     <td>
-      <%= fi.text_field :title, class: 'form-control form-control-sm' %>
+      <%= fi.collection_select :performer_ids, Performer.all, :id, :name, {}, { class: 'select-performer-ids', multiple: true } %>
     </td>
     <td>
-      <%= fi.text_field :detail, class: 'form-control form-control-sm' %>
+      <%= fi.text_field :title, class: 'form-control' %>
+    </td>
+    <td>
+      <%= fi.text_field :detail, class: 'form-control' %>
     </td>
   </tr>
 <% end %>
