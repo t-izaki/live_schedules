@@ -32,7 +32,7 @@ RSpec.describe Schedule, type: :model do
       it { is_expected.to validate_length_of(:title).is_at_most(255) }
     end
 
-    # describe 'Numericality' do
+    # describe 'Inclusion' do
     #  # describe 'enum' のテストで確認しているため省略
     # end
   end

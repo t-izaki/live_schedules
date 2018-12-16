@@ -1,0 +1,19 @@
+<%= fields_for 'schedule[]', schedule do |fi| %>
+  <tr>
+    <td>
+      <%= schedule.date %>
+    </td>
+    <td>
+      <%= ja_week(schedule.date) %>
+    </td>
+    <td>
+      <%= fi.select :state, Schedule.states.keys.map {|k| [k, k]}, {}, {class: 'form-control form-control-sm'} %>
+    </td>
+    <td>
+      <%= fi.text_field :title, class: 'form-control form-control-sm' %>
+    </td>
+    <td>
+      <%= fi.text_field :detail, class: 'form-control form-control-sm' %>
+    </td>
+  </tr>
+<% end %>

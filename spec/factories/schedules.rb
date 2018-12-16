@@ -4,5 +4,15 @@ FactoryBot.define do
     state { 1 }
     title { 'Big Event!!' }
     detail { "Today's event is big!!" }
+
+    trait :no_title do
+      title { '' }
+    end
+
+    trait :no_detail do
+      detail { '' }
+    end
+
+    factory :simple_schedule, traits: %i[no_title no_detail]
   end
 end

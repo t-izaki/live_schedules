@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'top#index'
   resources :instruments, only: %i[index new create edit update destroy]
   resources :performers
+  resources :monthly_schedules, only: %i[show edit update], param: :date
 end
