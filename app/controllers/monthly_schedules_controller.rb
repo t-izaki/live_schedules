@@ -22,7 +22,7 @@ class MonthlySchedulesController < ApplicationController
   private
 
   def update_params
-    params.permit(schedule: [:state, :title, :detail])[:schedule]
+    params.permit(schedule: %i[state title detail]).require(:schedule)
   end
 
   def set_date

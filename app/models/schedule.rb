@@ -15,7 +15,7 @@ class Schedule < ApplicationRecord
     range = date.days_in_month
 
     ActiveRecord::Base.transaction do
-      range.each { |date| find_or_create_by!(date: date) }
+      range.each { |d| find_or_create_by!(date: d) }
     end
     select_in_month(date)
   end
