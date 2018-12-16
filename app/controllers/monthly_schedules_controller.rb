@@ -12,7 +12,7 @@ class MonthlySchedulesController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       update_params.each do |id, attr|
-        schedule = Schedule.find!(id)
+        schedule = Schedule.find(id)
         schedule.update!(attr)
       end
     end

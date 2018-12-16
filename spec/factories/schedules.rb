@@ -5,6 +5,18 @@ FactoryBot.define do
     title { 'Big Event!!' }
     detail { "Today's event is big!!" }
 
+    trait :undecided do
+      state { Schedule.states['undecided'] }
+    end
+
+    trait :open do
+      state { Schedule.states['open'] }
+    end
+
+    trait :closed do
+      state { Schedule.states['closed'] }
+    end
+
     trait :no_title do
       title { '' }
     end
@@ -14,5 +26,8 @@ FactoryBot.define do
     end
 
     factory :simple_schedule, traits: %i[no_title no_detail]
+    factory :simple_undecided_schedule, traits: %i[undecided no_title no_detail]
+    factory :simple_open_schedule, traits: %i[open no_title no_detail]
+    factory :simple_closed_schedule, traits: %i[closed no_title no_detail]
   end
 end

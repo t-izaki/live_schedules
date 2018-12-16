@@ -20,6 +20,9 @@ Metrics/LineLength:
 RSpec/ExampleLength:
   Max: 10
 
+RSpec/ImplicitSubject:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Max: 5
 
