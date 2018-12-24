@@ -1,36 +1,26 @@
-<div class="row">
-  <div class="col">
-    <h1>演奏者</h1>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>名前</th>
-        <th>楽器</th>
-        <th>紹介文</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @performers.each do |performer| %>
-        <tr>
-          <td><%= performer.id %></td>
-          <td><%= performer.name %></td>
-          <td><%= performer.instrument_name %></td>
-          <td><%= replace_if_blank(performer.introduction, '紹介文がありません').truncate(Performer::INTRODUCTION_TRUNCATE_LENGTH) %></td>
-          <td>
-            <%= link_to '詳細', performer_path(performer) %>
-            <%= link_to '編集', edit_performer_path(performer) %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <%= link_to '新しく演奏者を追加する', new_performer_path %>
-  </div>
-</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>名前</th>
+    <th>楽器</th>
+    <th>紹介文</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @performers.each do |performer| %>
+    <tr>
+      <td><%= performer.id %></td>
+      <td><%= performer.name %></td>
+      <td><%= performer.instrument_name %></td>
+      <td><%= replace_if_blank(performer.introduction, '紹介文がありません').truncate(Performer::INTRODUCTION_TRUNCATE_LENGTH) %></td>
+      <td>
+        <%= link_to '詳細', performer_path(performer) %>
+        <%= link_to '更新', edit_performer_path(performer) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to '新しく演奏者を作成する', new_performer_path %>

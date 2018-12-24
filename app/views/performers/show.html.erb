@@ -1,22 +1,12 @@
-<div class="row">
-  <div class="col">
-    <h1>演奏者の詳細</h1>
-  </div>
-</div>
+<dl class="row">
+  <dt class="col-sm-3">名前</dt>
+  <dd class="col-sm-9"><%= @performer.name %></dd>
 
-<div class="row">
-  <div class="col">
-    <dl class="row">
-      <dt class="col-sm-3">名前</dt>
-      <dd class="col-sm-9"><%= @performer.name %></dd>
+  <dt class="col-sm-3">楽器</dt>
+  <dd class="col-sm-9"><%= @performer.instrument_name %></dd>
 
-      <dt class="col-sm-3">楽器</dt>
-      <dd class="col-sm-9"><%= @performer.instrument_name %></dd>
+  <dt class="col-sm-3">紹介文</dt>
+  <dd class="col-sm-9"><%= replace_if_blank(@performer.introduction, '紹介文がありません') %></dd>
+</dl>
 
-      <dt class="col-sm-3">紹介文</dt>
-      <dd class="col-sm-9"><%= replace_if_blank(@performer.introduction, '紹介文がありません') %></dd>
-    </dl>
-
-    <%= link_to 'この演奏者を編集する', edit_performer_path %>
-  </div>
-</div>
+<%= link_to 'この演奏者を更新する', edit_performer_path %>

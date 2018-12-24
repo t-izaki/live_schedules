@@ -1,28 +1,20 @@
-<div class="row">
-  <div class="col">
-    <h1>スケジュールを編集する</h1>
+<%= form_tag monthly_schedule_path(@date), method: :put do %>
+  <table class="table table-condensed table-borderless table-sm">
+    <thead>
+      <tr>
+        <td>日付</td>
+        <td>曜日</td>
+        <td>状態</td>
+        <td>演奏者</td>
+        <td>タイトル</td>
+        <td>詳細</td>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'form_unit', collection: @schedules, as: :schedule %>
+    </tbody>
+  </table>
+  <div class="form-group text-center">
+    <%= submit_tag '更新する', class: 'btn btn-primary' %>
   </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <%= form_tag monthly_schedule_path(@date), method: :put do %>
-      <table class="table table-condensed table-borderless table-sm">
-        <thead>
-          <tr>
-            <td>#</td>
-            <td>曜日</td>
-            <td>状態</td>
-            <td>演奏者</td>
-            <td>タイトル</td>
-            <td>詳細</td>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render partial: 'form_unit', collection: @schedules, as: :schedule %>
-        </tbody>
-      </table>
-      <%= submit_tag '更新する', class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-</div>
+<% end %>

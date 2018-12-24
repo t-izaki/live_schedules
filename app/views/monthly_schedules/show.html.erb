@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col">
-    <h1><%= @date %>のスケジュール</h1>
+    <span><%= link_to '＜' + @date.prev_month.strftime('%Y年%m月'), monthly_schedule_path(@date.prev_month) %></span>
+  </div>
+  <div class="col text-center">
+    <h1><%= @date.strftime('%Y年%m月') %></h1>
+  </div>
+  <div class="col text-right">
+    <span><%= link_to @date.next_month.strftime('%Y年%m月') + '＞', monthly_schedule_path(@date.next_month) %></span>
   </div>
 </div>
 
@@ -31,6 +37,6 @@
       </tbody>
     </table>
 
-    <%= link_to '編集する', edit_monthly_schedule_path(@date) %>
+    <%= link_to '更新する', edit_monthly_schedule_path(@date) %>
   </div>
 </div>
