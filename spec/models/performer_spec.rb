@@ -21,7 +21,7 @@ RSpec.describe Performer, type: :model do
     end
 
     describe 'Numericality' do
-      it { is_expected.to validate_numericality_of(:instrumnet_id) }
+      it { is_expected.to validate_numericality_of(:instrument_id) }
     end
   end
 end

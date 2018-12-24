@@ -31,6 +31,13 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+module IsExpectedBlock
+  def is_expected_block
+    expect { subject }
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -62,6 +69,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers
+  config.include IsExpectedBlock
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
