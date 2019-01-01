@@ -21,21 +21,46 @@ describe 'MonthlySchedules', type: :feature do
   end
 
   describe '#edit->#update' do
-    let!(:schedule_1_10) { create(:simple_open_schedule, date: '2018-01-10', title: 'ピアノ演奏会') }
-    let!(:schedule_1_20) { create(:simple_undecided_schedule, date: '2018-01-20', detail: '未定') }
+    describe 'monthly_schedulesが更新できる' do
+      let(:schedule) do
+        create(:schedule, :open, :with_performer,
+               date: '2018-01-10', title: 'ピアノ演奏会', detail: 'ピアノの演奏会です')
+      end
+      let!(:performer_name) { schedule.performers.first.name }
+      let!(:new_performer_name) { create(:performer).name }
 
-    it 'monthly_schedulesが更新できる' do
-      visit '/monthly_schedules/2018-01-01/edit'
+      before { visit '/monthly_schedules/2018-01-01/edit' }
 
-      fill_in "schedule_#{schedule_1_10.id}_title", with: 'バイオリン演奏会'
-      fill_in "schedule_#{schedule_1_10.id}_detail", with: 'ピアノからバイオリンに変更'
-      select 'closed', from: "schedule_#{schedule_1_20.id}_state"
-      fill_in "schedule_#{schedule_1_20.id}_detail", with: ''
-      click_on '更新する'
+      it '更新なし' do
+        click_on '更新する'
+        expect(page).to have_http_status(:success)
+        expect(page).to have_content("2018-01-10 水 open #{performer_name} ピアノ演奏会 ピアノの演奏会です")
+      end
 
-      expect(page).to have_http_status(:success)
-      expect(page).to have_content('2018-01-10 水 open バイオリン演奏会 ピアノからバイオリンに変更')
-      expect(page).to have_content('2018-01-20 土 closed')
+      it '状態が更新できる' do
+        select 'closed', from: "schedule_#{schedule.id}_state"
+        click_on '更新する'
+        expect(page).to have_content("2018-01-10 水 closed #{performer_name} ピアノ演奏会 ピアノの演奏会です")
+      end
+
+      it '演奏者が更新できる' do
+        select new_performer_name, from: "schedule_#{schedule.id}_performer_ids"
+        unselect performer_name, from: "schedule_#{schedule.id}_performer_ids"
+        click_on '更新する'
+        expect(page).to have_content("2018-01-10 水 open #{new_performer_name} ピアノ演奏会 ピアノの演奏会です")
+      end
+
+      it 'タイトルが更新できる' do
+        fill_in "schedule_#{schedule.id}_title", with: 'バイオリン演奏会'
+        click_on '更新する'
+        expect(page).to have_content("2018-01-10 水 open #{performer_name} バイオリン演奏会 ピアノの演奏会です")
+      end
+
+      it '詳細が更新できる' do
+        fill_in "schedule_#{schedule.id}_detail", with: 'バイオリンの演奏会です'
+        click_on '更新する'
+        expect(page).to have_content("2018-01-10 水 open #{performer_name} ピアノ演奏会 バイオリンの演奏会です")
+      end
     end
   end
 end

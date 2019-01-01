@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :performer do
-    name { Faker::Name.name }
+    name { Faker::Name.unique.name }
     introduction { Faker::Matz.quote }
     instrument
 

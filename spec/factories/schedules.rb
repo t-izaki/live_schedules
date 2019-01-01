@@ -25,6 +25,12 @@ FactoryBot.define do
       detail { '' }
     end
 
+    trait :with_performer do
+      after(:build) do |schedule|
+        schedule.performers << build(:performer)
+      end
+    end
+
     factory :simple_schedule, traits: %i[no_title no_detail]
     factory :simple_undecided_schedule, traits: %i[undecided no_title no_detail]
     factory :simple_open_schedule, traits: %i[open no_title no_detail]

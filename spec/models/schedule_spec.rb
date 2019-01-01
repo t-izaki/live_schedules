@@ -3,12 +3,7 @@ require 'rails_helper'
 RSpec.describe Schedule, type: :model do
   describe 'enum' do
     describe 'state' do
-      it { expect(build(:schedule, state: 0).state).to eq 'undecided' }
-      it { expect(build(:schedule, state: 1).state).to eq 'open' }
-      it { expect(build(:schedule, state: 2).state).to eq 'closed' }
-      it 'stateがenumで指定されたintegerでないとinvalidである' do
-        expect { build(:schedule, state: 999) }.to raise_error(ArgumentError)
-      end
+      it { is_expected.to define_enum_for(:state).with(undecided: 0, open: 1, closed: 2) }
     end
   end
 
