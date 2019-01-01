@@ -50,4 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV.fetch("DB_NAME") %>
+  database: <%= ENV.fetch("DB_NAME") { 'live_schedules_production' } %>
