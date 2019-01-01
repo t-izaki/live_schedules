@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :instruments, only: %i[index show]
       resources :performers, only: %i[index show]
+      get 'monthly_schedules/:date', controller: :schedules, action: :index
+      resources :schedules, only: %i[show], param: :date
     end
   end
 end
