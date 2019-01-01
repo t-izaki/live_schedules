@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 describe 'Api::V1::Instruments', type: :request do
+  describe 'Serializer' do
+    let(:json) do
+      instrument = build(:instrument)
+      serializer = InstrumentSerializer.new(instrument)
+      serialization = ActiveModelSerializers::Adapter.create(serializer)
+      JSON.parse(serialization.to_json)
+    end
+
+    it 'JSONのキーが正常である' do
+      expect(json.keys).to contain_exactly('id', 'name', 'color')
+    end
+  end
+
   describe 'api/v1/instruments' do
     before do
       create_list(:instrument, 3)
@@ -14,7 +27,6 @@ describe 'Api::V1::Instruments', type: :request do
     it '正しいJSONが返る' do
       json = JSON.parse(response.body)
       expect(json.size).to eq 3
-      expect(json[0].keys).to contain_exactly('id', 'name', 'color')
     end
   end
 
@@ -34,7 +46,6 @@ describe 'Api::V1::Instruments', type: :request do
       expect(json['id']).to eq instrument.id
       expect(json['name']).to eq instrument.name
       expect(json['color']).to eq instrument.color
-      expect(json.keys).to contain_exactly('id', 'name', 'color')
     end
   end
 end

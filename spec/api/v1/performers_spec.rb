@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 describe 'Api::V1::Performers', type: :request do
+  describe 'Serializer' do
+    let(:json) do
+      instrument = build(:performer)
+      serializer = PerformerSerializer.new(instrument)
+      serialization = ActiveModelSerializers::Adapter.create(serializer)
+      JSON.parse(serialization.to_json)
+    end
+
+    it 'JSONのキーが正常である' do
+      expect(json.keys).to contain_exactly('id', 'name', 'introduction', 'instrument')
+      expect(json['instrument'].keys).to contain_exactly('id', 'name', 'color')
+    end
+  end
+
   describe 'api/v1/performers' do
     let!(:instrument) { create(:performer).instrument }
 
@@ -19,7 +33,7 @@ describe 'Api::V1::Performers', type: :request do
       it '正しいJSONが返る' do
         json = JSON.parse(response.body)
         expect(json.size).to eq 1
-        expect(json[0].keys).to contain_exactly('id', 'name', 'introduction', 'instrument_id')
+        expect(json[0].keys).to contain_exactly('id', 'name', 'introduction', 'instrument')
       end
     end
 
@@ -33,7 +47,6 @@ describe 'Api::V1::Performers', type: :request do
       it '正しいJSONが返る' do
         json = JSON.parse(response.body)
         expect(json.size).to eq 3
-        expect(json[0].keys).to contain_exactly('id', 'name', 'introduction', 'instrument_id')
       end
     end
   end
@@ -54,8 +67,7 @@ describe 'Api::V1::Performers', type: :request do
       expect(json['id']).to eq performer.id
       expect(json['name']).to eq performer.name
       expect(json['introduction']).to eq performer.introduction
-      expect(json['instrument_id']).to eq performer.instrument_id
-      expect(json.keys).to contain_exactly('id', 'name', 'introduction', 'instrument_id')
+      # expect(json['instrument_id']).to eq performer.instrument_id
     end
   end
 end
