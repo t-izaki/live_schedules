@@ -7,6 +7,18 @@
 
   <dt class="col-sm-3">紹介文</dt>
   <dd class="col-sm-9"><%= replace_if_blank(@performer.introduction, '紹介文がありません') %></dd>
+
+  <dt class="col-sm-3">画像URL</dt>
+  <dd class="col-sm-9">
+    <%= image_tag @performer.image_url, width: '200' if @performer.image_url %>
+    <%= replace_if_blank(@performer.image_url, '画像URLがありません') %>
+  </dd>
+
+  <dt class="col-sm-3">アイコンURL</dt>
+  <dd class="col-sm-9">
+    <%= image_tag @performer.icon_url, width: '200' if @performer.icon_url %>
+    <%= replace_if_blank(@performer.icon_url, 'アイコンURLがありません') %>
+  </dd>
 </dl>
 
 <%= link_to 'この演奏者を更新する', edit_performer_path %>

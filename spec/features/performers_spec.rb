@@ -25,11 +25,15 @@ describe 'Instruments', type: :feature do
       visit '/performers/new'
       fill_in 'Name', with: 'new_name'
       fill_in 'Introduction', with: 'new_introduction'
+      fill_in 'Image url', with: 'http://new-image-url.example'
+      fill_in 'Icon url', with: 'http://new-icon-url.example'
       select 'Piano', from: 'Instrument'
       click_on '作成する'
       expect(page).to have_http_status(:success)
       expect(page).to have_content('new_name')
         .and have_content('new_introduction')
+        .and have_content('http://new-image-url.example')
+        .and have_content('http://new-icon-url.example')
         .and have_content('Piano')
     end
   end
@@ -43,11 +47,15 @@ describe 'Instruments', type: :feature do
       visit "/performers/#{performer.id}/edit"
       fill_in 'Name', with: 'updated_name'
       fill_in 'Introduction', with: 'updated_introduction'
+      fill_in 'Image url', with: 'http://updated-image-url.example'
+      fill_in 'Icon url', with: 'http://updated-icon-url.example'
       select 'Violin', from: 'Instrument'
       click_on '更新する'
       expect(page).to have_http_status(:success)
       expect(page).to have_content('updated_name')
         .and have_content('updated_name')
+        .and have_content('http://updated-image-url.example')
+        .and have_content('http://updated-icon-url.example')
         .and have_content('Violin')
     end
   end

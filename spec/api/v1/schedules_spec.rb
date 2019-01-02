@@ -11,7 +11,7 @@ describe 'Api::V1::Schedules', type: :request do
 
     it 'JSONのキーが正常である' do
       expect(json.keys).to contain_exactly('date', 'state', 'title', 'detail', 'performers')
-      expect(json['performers'][0].keys).to contain_exactly('id', 'name', 'introduction')
+      expect(json['performers'][0].keys).to contain_exactly('id', 'name', 'introduction', 'image_url', 'icon_url')
     end
   end
 

@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th>#</th>
+    <th></th>
     <th>名前</th>
     <th>楽器</th>
     <th>紹介文</th>
@@ -12,6 +13,7 @@
   <% @performers.each do |performer| %>
     <tr>
       <td><%= performer.id %></td>
+      <td class="p-0"><%= image_tag performer.icon_url, size: '48x48' if performer.icon_url %>
       <td><%= performer.name %></td>
       <td><%= performer.instrument_name %></td>
       <td><%= replace_if_blank(performer.introduction, '紹介文がありません').truncate(Performer::INTRODUCTION_TRUNCATE_LENGTH) %></td>
@@ -23,4 +25,5 @@
   <% end %>
   </tbody>
 </table>
+
 <%= link_to '新しく演奏者を作成する', new_performer_path %>

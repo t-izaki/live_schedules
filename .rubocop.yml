@@ -21,12 +21,15 @@ RSpec/ContextWording:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 10
+  Max: 15
 
 RSpec/ImplicitSubject:
   Enabled: false
 
 RSpec/MultipleExpectations:
+  Max: 10
+
+RSpec/NestedGroups:
   Max: 5
 
 Style/AsciiComments:

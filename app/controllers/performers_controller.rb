@@ -45,6 +45,6 @@ class PerformersController < ApplicationController
   end
 
   def create_update_params
-    params.require(:performer).permit(:name, :introduction, :instrument_id)
+    params.require(:performer).permit(:name, :introduction, :instrument_id, :image_url, :icon_url)
   end
 end
