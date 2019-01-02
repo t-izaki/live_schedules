@@ -20,8 +20,20 @@ RSpec.describe Performer, type: :model do
       it { is_expected.to validate_length_of(:name).is_at_most(255) }
     end
 
-    describe 'Numericality' do
-      it { is_expected.to validate_numericality_of(:instrument_id) }
+    describe 'Format' do
+      describe ':icon_url' do
+        it { is_expected.to allow_value('http://foo.com').for(:icon_url) }
+        it { is_expected.to allow_value('https://foo.com').for(:icon_url) }
+        it { is_expected.not_to allow_value('hogehoge').for(:icon_url) }
+        it { is_expected.to allow_value('').for(:icon_url) }
+      end
+
+      describe ':image_url' do
+        it { is_expected.to allow_value('http://foo.com').for(:image_url) }
+        it { is_expected.to allow_value('https://foo.com').for(:image_url) }
+        it { is_expected.not_to allow_value('hogehoge').for(:image_url) }
+        it { is_expected.to allow_value('').for(:image_url) }
+      end
     end
   end
 end
