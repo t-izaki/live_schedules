@@ -7,5 +7,10 @@ class Performer < ApplicationRecord
 
   validates :name, :instrument_id, presence: true
   validates :name, length: { maximum: 255 }
+  validates :regular, inclusion: { in: [true, false] }
   validates :icon_url, :image_url, format: /\A#{URI.regexp(%w[http https])}\z/, allow_blank: true
+
+  scope :regulars, lambda {
+    where(regular: true)
+  }
 end

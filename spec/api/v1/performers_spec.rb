@@ -16,36 +16,72 @@ describe 'Api::V1::Performers', type: :request do
   end
 
   describe 'api/v1/performers' do
-    let!(:instrument) { create(:performer).instrument }
+    describe 'allパラメータ' do
+      before do
+        create_list(:regular_performer, 2)
+        create(:performer, regular: false)
+        get "/api/v1/performers/#{params}"
+      end
 
-    before do
-      create_list(:performer, 2)
-      get "/api/v1/performers/#{params}"
+      context '含まれる場合' do
+        let(:params) { '?all=1' }
+
+        it 'ステータスコード200を返す' do
+          expect(response.status).to eq 200
+        end
+
+        it '正しいJSONが返る' do
+          json = JSON.parse(response.body)
+          expect(json.size).to eq 3
+        end
+      end
+
+      context '含まれない場合' do
+        let(:params) { '' }
+
+        it 'ステータスコード200を返す' do
+          expect(response.status).to eq 200
+        end
+
+        it '正しいJSONが返る' do
+          json = JSON.parse(response.body)
+          expect(json.size).to eq 2
+        end
+      end
     end
 
-    context 'instrument_idパラメータが含まれる場合' do
-      let(:params) { "?instrument_id=#{instrument.id}" }
+    describe 'instrument_idパラメータ' do
+      let!(:instrument) { create(:regular_performer).instrument }
 
-      it 'ステータスコード200を返す' do
-        expect(response.status).to eq 200
+      before do
+        create_list(:regular_performer, 2)
+        get "/api/v1/performers/#{params}"
       end
 
-      it '正しいJSONが返る' do
-        json = JSON.parse(response.body)
-        expect(json.size).to eq 1
+      context '含まれる場合' do
+        let(:params) { "?instrument_id=#{instrument.id}" }
+
+        it 'ステータスコード200を返す' do
+          expect(response.status).to eq 200
+        end
+
+        it '正しいJSONが返る' do
+          json = JSON.parse(response.body)
+          expect(json.size).to eq 1
+        end
       end
-    end
 
-    context 'instrument_idパラメータが含まれない場合' do
-      let(:params) { '' }
+      context '含まれない場合' do
+        let(:params) { '' }
 
-      it 'ステータスコード200を返す' do
-        expect(response.status).to eq 200
-      end
+        it 'ステータスコード200を返す' do
+          expect(response.status).to eq 200
+        end
 
-      it '正しいJSONが返る' do
-        json = JSON.parse(response.body)
-        expect(json.size).to eq 3
+        it '正しいJSONが返る' do
+          json = JSON.parse(response.body)
+          expect(json.size).to eq 3
+        end
       end
     end
   end

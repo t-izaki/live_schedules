@@ -44,8 +44,6 @@ describe 'MonthlySchedules', type: :feature do
       end
 
       it '演奏者が更新できる' do
-        # select new_performer_name, from: "schedule_#{schedule.id}_performer_ids"
-        # unselect performer_name, from: "schedule_#{schedule.id}_performer_ids"
         fill_in "schedule_#{schedule.id}_performer_ids", with: new_performer.id
         click_on '更新する'
         expect(page).to have_content("2018-01-10 水 open #{new_performer.name} ピアノ演奏会 ピアノの演奏会です")

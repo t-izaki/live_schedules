@@ -5,6 +5,9 @@
   <dt class="col-sm-3">楽器</dt>
   <dd class="col-sm-9"><%= @performer.instrument_name %></dd>
 
+  <dt class="col-sm-3">レギュラー?</dt>
+  <dd class="col-sm-9"><%= @performer.regular ? 'はい' : 'いいえ' %></dd>
+
   <dt class="col-sm-3">紹介文</dt>
   <dd class="col-sm-9"><%= replace_if_blank(@performer.introduction, '紹介文がありません') %></dd>
 
