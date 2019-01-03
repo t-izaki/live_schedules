@@ -18,3 +18,10 @@
     <%= submit_tag '更新する', class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<div id='js-performer_list' data-json='<%= Performer.all.to_json(only: [:id, :name]) %>'></div>
+<div id='js-schedules' data-json="<%= @schedules.to_json(only: [:id, :date], include: {performers: {only: [:id, :name]}}) %>"></div>
+<%= javascript_include_tag 'bootstrap-tagsinput' %>
+<%= javascript_include_tag 'typeahead.bundle' %>
+<%= javascript_include_tag 'performer_selector' %>
+<%= stylesheet_link_tag 'bootstrap-tagsinput' %>

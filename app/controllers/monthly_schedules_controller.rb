@@ -27,13 +27,13 @@ class MonthlySchedulesController < ApplicationController
   end
 
   def attendances_params
-    params.permit(schedule: [performer_ids: []]).require(:schedule)
+    params.permit(schedule: :performer_ids).require(:schedule)
   end
 
   def attendances_update!(schedule)
     schedule.attendances.each(&:destroy!)
-    performer_ids = attendances_params[schedule.id.to_s][:performer_ids].reject(&:blank?)
-    performer_ids.each do |performer_id|
+    performer_ids = attendances_params[schedule.id.to_s][:performer_ids].split(',')
+    performer_ids.each_with_index do |performer_id, _index|
       schedule.attendances.create!(performer_id: performer_id)
     end
   end

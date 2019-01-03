@@ -10,7 +10,7 @@
       <%= fi.select :state, Schedule.states.keys.map {|k| [k, k]}, {}, { class: 'form-control' } %>
     </td>
     <td>
-      <%= fi.collection_select :performer_ids, Performer.all, :id, :name, {}, { class: 'select-performer-ids', multiple: true } %>
+      <%= fi.text_field :performer_ids, class: 'performer_selector' %>
     </td>
     <td>
       <%= fi.text_field :title, class: 'form-control' %>
