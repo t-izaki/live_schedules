@@ -1,0 +1,23 @@
+<ul>
+  <li>毎日10時に、Facebookに自動で投稿されます。</li>
+  <li>以下のプレースホルダーが利用できます。</li>
+  <ul>
+    <li>WIP</li>
+  </ul>
+</ul>
+
+
+<%= form_tag setting_weekly_posts_path, method: :put do %>
+  <% @weekly_posts.each do |post| %>
+    <%= fields_for 'weekly_posts[]', post do |f| %>
+      <div class="form-group">
+        <%= f.label :article, "#{post.week}" %>
+        <%= f.text_area :article, autofocus: true, class: 'form-control' %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group text-center">
+    <%= submit_tag '更新する', class: 'btn btn-primary' %>
+  </div>
+<% end %>

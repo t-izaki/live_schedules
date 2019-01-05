@@ -8,14 +8,18 @@ module ApplicationHelper
     arr[date.wday]
   end
 
-  def nav_item_class(controller_name = '')
-    ['nav-item', 'nav-link', active_or_blank(controller_name)].reject(&:blank?).join(' ')
+  def nav_item_class(controller_path = '')
+    ['nav-item', 'nav-link', active_or_blank(controller_path)].reject(&:blank?).join(' ')
+  end
+
+  def list_group_item_class(controller_path = '')
+    ['list-group-item', 'list-group-item-action', active_or_blank(controller_path)].reject(&:blank?).join(' ')
   end
 
   private
 
-  def active_or_blank(controller_name)
-    if controller.controller_name == controller_name
+  def active_or_blank(controller_path)
+    if controller.controller_path.include?(controller_path)
       'active'
     else
       ''

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :performers
   resources :monthly_schedules, only: %i[show edit update], param: :date
 
+  namespace :setting do
+    resource :weekly_posts, only: %i[edit update]
+  end
+
   namespace :api, { format: 'json' } do
     namespace :v1 do
       resources :instruments, only: %i[index show]

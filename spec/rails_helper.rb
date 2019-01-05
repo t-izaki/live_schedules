@@ -73,7 +73,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation, except: %w[weekly_posts])
   end
 
   config.before do

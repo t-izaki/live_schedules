@@ -29,14 +29,21 @@
             <%= link_to 'スケジュール', monthly_schedule_path(date: Date.today), class: nav_item_class('monthly_schedules') %>
             <%= link_to '演奏者', performers_path, class: nav_item_class('performers') %>
             <%= link_to '楽器', instruments_path, class: nav_item_class('instruments') %>
-            <%= link_to 'その他の設定', root_path, class: nav_item_class('settings') %>
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: nav_item_class() %>
+            <%= link_to 'その他の設定', edit_setting_weekly_posts_path, class: nav_item_class('setting/') %>
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: nav_item_class('logout') %>
           </nav>
         </div>
       </div>
       <% end %>
 
       <div class="row">
+
+        <% if controller.controller_name.in? %w[weekly_posts] %>
+          <div class="col-3">
+            <%= render partial: 'layouts/setting_sidebar' %>
+          </div>
+        <% end %>
+
         <div class="col">
           <%= yield %>
         </div>
