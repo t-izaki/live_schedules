@@ -1,11 +1,18 @@
-<ul>
-  <li>毎日10時に、Facebookに自動で投稿されます。</li>
-  <li>以下のプレースホルダーが利用できます。</li>
-  <ul>
-    <li>WIP</li>
-  </ul>
-</ul>
+<p>毎日10時に、Facebookに自動で投稿されます。</p>
+<p>以下のプレースホルダーが利用できます。</p>
 
+<table class="table table-sm table-bordered small">
+  <tbody>
+    <tr>
+      <td><kbd>%day+n%</kbd>(nは任意の0以上の整数)</td>
+      <td>n日後の日付を表示</td>
+    </tr>
+    <tr>
+      <td><kbd>%performer+n%</kbd>(nは任意の0以上の整数)</td>
+      <td>n日後の演奏者を楽器とともに表示</td>
+    </tr>
+  </tbody>
+</table>
 
 <%= form_tag setting_weekly_posts_path, method: :put do %>
   <% @weekly_posts.each do |post| %>
