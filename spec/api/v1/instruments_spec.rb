@@ -10,7 +10,7 @@ describe 'Api::V1::Instruments', type: :request do
     end
 
     it 'JSONのキーが正常である' do
-      expect(json.keys).to contain_exactly('id', 'name', 'color')
+      expect(json.keys).to contain_exactly('id', 'name', 'color', 'regular_performers')
     end
   end
 
@@ -34,6 +34,7 @@ describe 'Api::V1::Instruments', type: :request do
     let!(:instrument) { create(:instrument) }
 
     before do
+      create(:regular_performer, instrument: instrument)
       get "/api/v1/instruments/#{instrument.id}"
     end
 
@@ -46,6 +47,7 @@ describe 'Api::V1::Instruments', type: :request do
       expect(json['id']).to eq instrument.id
       expect(json['name']).to eq instrument.name
       expect(json['color']).to eq instrument.color
+      expect(json['regular_performers'].size).to eq 1
     end
   end
 end
