@@ -33,6 +33,19 @@ RSpec.describe Schedule, type: :model do
   end
 
   describe 'Scope' do
+    describe ':decided' do
+      subject { Schedule.decided }
+
+      before { create(:schedule, :undecided, date: '2018-01-01') }
+
+      let(:open_schedule) { create(:schedule, :open, date: '2018-01-02') }
+      let(:closed_schedule) { create(:schedule, :closed, date: '2018-01-03') }
+
+      it 'stateが決定している(:open OR :closed)スケジュールのリストを返す' do
+        is_expected.to contain_exactly(open_schedule, closed_schedule)
+      end
+    end
+
     describe ':select_in_month' do
       subject { Schedule.select_in_month(Date.new(2018, 1, 1)) }
 

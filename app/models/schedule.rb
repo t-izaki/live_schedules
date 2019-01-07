@@ -9,6 +9,10 @@ class Schedule < ApplicationRecord
   validates :title, length: { maximum: 255 }
   validates :state, inclusion: { in: Schedule.states.keys }
 
+  scope :decided, lambda {
+    where.not(state: :undecided)
+  }
+
   scope :select_in_month, lambda { |date|
     range = date.days_in_month
     where(date: range).order(:date)

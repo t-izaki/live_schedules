@@ -4,12 +4,12 @@ module Api
       before_action :set_date
 
       def index
-        schedules = Schedule.select_in_month(@date)
+        schedules = Schedule.decided.select_in_month(@date)
         render json: schedules
       end
 
       def show
-        schedule = Schedule.find_by!(date: @date)
+        schedule = Schedule.decided.find_by(date: @date)
         render json: schedule
       end
 

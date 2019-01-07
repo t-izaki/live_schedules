@@ -33,7 +33,7 @@ describe 'Api::V1::Schedules', type: :request do
     end
   end
 
-  describe 'api/v1/instruments/:id' do
+  describe 'api/v1/schedules/:date' do
     let!(:schedule) { create(:schedule, :with_performer) }
 
     before do
