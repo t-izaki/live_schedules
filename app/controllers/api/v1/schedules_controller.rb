@@ -4,8 +4,8 @@ module Api
       before_action :set_date
 
       def index
-        schedules = Schedule.decided.select_in_month(@date)
-        render json: schedules
+        schedules = Schedule.decided.select_in_month(@date).includes(performers: :instrument)
+        render json: schedules, include: ['performers', 'performers.instrument']
       end
 
       def show
