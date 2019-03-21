@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :performers, only: %i[index show]
       get 'monthly_schedules/:date', controller: :schedules, action: :index
       resources :schedules, only: %i[show], param: :date
+      resource :todays_article, only: %i[show]
     end
   end
 end
