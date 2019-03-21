@@ -22,8 +22,8 @@
   <% @weekly_posts.each do |post| %>
     <%= fields_for 'weekly_posts[]', post do |f| %>
       <div class="form-group">
-        <%= f.label :article, "#{post.week}" %>
-        <%= f.text_area :article, autofocus: true, class: 'form-control' %>
+        <%= f.label :template_article, "#{post.week}" %>
+        <%= f.text_area :template_article, autofocus: true, class: 'form-control' %>
       </div>
     <% end %>
   <% end %>

@@ -17,7 +17,7 @@ module Setting
     private
 
     def update_params
-      params.permit(weekly_posts: [:article])[:weekly_posts]
+      params.permit(weekly_posts: [:template_article])[:weekly_posts]
     end
   end
 end

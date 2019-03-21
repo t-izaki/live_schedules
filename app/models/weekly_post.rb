@@ -9,7 +9,7 @@ class WeeklyPost < ApplicationRecord
   end
 
   def convert_placeholder
-    converted_article = article
+    converted_article = template_article
     converted_article = convert_days(converted_article)
     converted_article = convert_title(converted_article)
     converted_article = convert_performers(converted_article)

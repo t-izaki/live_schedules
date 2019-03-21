@@ -1,3 +1,5 @@
+#TODO: テストを書く
+
 module Api
   module V1
     class TodaysArticlesController < Api::V1::BaseController
