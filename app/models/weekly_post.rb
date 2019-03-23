@@ -4,8 +4,12 @@ class WeeklyPost < ApplicationRecord
   validates :week, inclusion: { in: WeeklyPost.weeks.keys }
 
   def self.todays_article
-    weekly_post = find_by(week: Time.zone.today.wday)
-    weekly_post.convert_placeholder
+    if Schedule.today.open?
+      weekly_post = find_by(week: Time.zone.today.wday)
+      weekly_post.convert_placeholder
+    else
+      ''
+    end
   end
 
   def convert_placeholder

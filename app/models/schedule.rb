@@ -9,6 +9,10 @@ class Schedule < ApplicationRecord
   validates :title, length: { maximum: 255 }
   validates :state, inclusion: { in: Schedule.states.keys }
 
+  scope :today, lambda {
+    find_by(date: Date.today)
+  }
+
   scope :decided, lambda {
     where.not(state: :undecided)
   }
